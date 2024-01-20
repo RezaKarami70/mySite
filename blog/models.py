@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-class post(models.Model):
+class Post(models.Model):
     # image
     # author
     title = models.CharField(max_length=255)
@@ -13,3 +13,10 @@ class post(models.Model):
     published_date = models.DateTimeField(null=True)
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
+
+    class Meta():
+        ordering = ['created_date']
+
+    def __str__(self):
+        text = self.title + " - " + str(self.id)
+        return text
