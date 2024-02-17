@@ -12,10 +12,9 @@ def pre(posts, target):
         if id == target.id:
             break
         i = i + 1
-    return list.__getitem__(i - 1)
-
-    
-
+    if i == 0 :
+        return list.__getitem__(0)
+    return list.__getitem__(i-1)
 
 
 def next(posts, target):
@@ -29,10 +28,9 @@ def next(posts, target):
         i = i + 1
 
     if i >= list.__len__()-1:
-        i = -1
+        return list.__getitem__(i)
 
     return list.__getitem__(i + 1)
-
 
 
 def blog_view(request):
