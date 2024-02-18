@@ -13,7 +13,6 @@ class Post(models.Model):
     author = models.ForeignKey(User,on_delete=models.SET_NULL,null=True)
     title = models.CharField(max_length=255)
     content = models.TextField()
-    # tag
     category = models.ManyToManyField(Category)
     counted_views = models.IntegerField(default=0)
     status = models.BooleanField(default=False)
