@@ -1,5 +1,5 @@
 from django import template
-from blog.models import Post
+from blog.models import Post, Comment
 from blog.models import Category
 from django.utils import timezone
 
@@ -14,6 +14,12 @@ def function():
 def function():
     posts = Post.objects.filter(published_date__lte=timezone.now(), status=1)
     return posts
+
+@register.simple_tag(name='comments_count')
+def function(pid):
+    post = Post.objects.get(pk=pid)
+    comments = Comment.objects.filter(post=post, approved=True).order_by('created_date').reverse()
+    return comments.count()
 
 @register.filter()
 def snippet(value,arg = 20):

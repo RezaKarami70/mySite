@@ -6,18 +6,17 @@
         giving them a second thought.
     </p>
     <div class="form-group d-flex flex-row">
-        <div class="col-autos">
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <div class="input-group-text"><i class="fa fa-envelope" aria-hidden="true"></i>
-                    </div>
+        <form action="{% url 'blog:newsletter' %}" method="POST">
+            {% csrf_token %}
+            <div class="col-autos">
+                <div class="input-group d-flex flex-row">
+                    <input name="email" placeholder="Email Address" onfocus="this.placeholder = ''"
+                        onblur="this.placeholder = 'Email Address '" required="" type="email">
+                    <button class="btn bb-btn" type="submit"><span class="lnr lnr-location"></span></button>
                 </div>
-                <input type="text" class="form-control" id="inlineFormInputGroup"
-                       placeholder="Enter email" onfocus="this.placeholder = ''"
-                       onblur="this.placeholder = 'Enter email'">
+                <div class="mt-10 info"></div>
             </div>
-        </div>
-        <a href="#" class="bbtns">Subcribe</a>
+        </form>
     </div>
     <p class="text-bottom">
         You can unsubscribe at any time

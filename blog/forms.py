@@ -1,24 +1,17 @@
 from django import forms
-from website.models import Contact,newsletter
+from blog.models import Comment
 from captcha.fields import CaptchaField
 
-class NameForm(forms.Form):
+class NameForm(forms.ModelForm):
+    captcha = CaptchaField()
     name = forms.CharField(max_length=255, label= "your name")
     email = forms.EmailField()
     subject = forms.CharField(max_length=255)
     message = forms.CharField(widget=forms.Textarea)
-
-
-class ContactForm(forms.ModelForm):
+    
+    
+class CommentForm(forms.ModelForm):
     captcha = CaptchaField()
     class Meta:
-        model = Contact
-        fields = '__all__'
-        
-        
-
-class newsletterForm(forms.ModelForm):
-    class Meta:
-        model = newsletter
-        fields = '__all__'
-    
+        model = Comment
+        fields = ['post', 'name', 'email', 'subject', 'message','captcha']
